@@ -55,11 +55,8 @@ function getDevies($accessToken, $accountID)
     curl_setopt($ch, CURLOPT_URL,$apiurl);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_HEADER, 1);
-    curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
@@ -69,8 +66,7 @@ function getDevies($accessToken, $accountID)
     curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-us) AppleWebKit/531.9 (KHTML, like Gecko) Version/4.0.3 Safari/531.9");
 
     $response = curl_exec($ch);
-    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-    list($header, $body) = explode("\r\n\r\n", $response, 2);
+
     curl_close ($ch);
 
     print_r($response);
