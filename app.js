@@ -8,14 +8,18 @@ $(document).ready(function(){
 			console.log(data);
 			$("#signin_button").html("Sign in");
 			$("#signin_button").prop('disabled', false);
-			displayDevices(data);
+			data = $.parseJSON(data);
+
+			if(data['errors'])
+				alert(data['errors'][0]['message']);
+			else
+				displayDevices(data);
 		});
 	});
 });
 
 function displayDevices(data) {
 	$("#login_input").slideUp();
-	data = $.parseJSON(data);
 	var contents = '<ul class="list-group">';
 	contents += '<li class="list-group-item disabled">Device Name - (Device ID)</li>';
 
