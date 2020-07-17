@@ -4,17 +4,28 @@ $(document).ready(function(){
 		$("#signin_button").html("Loading...");
 		$("#signin_button").prop('disabled', true);
 
-		$.post( "/api", $(this).serialize()).done(function(data){
-			console.log(data);
-			$("#signin_button").html("Sign in");
-			$("#signin_button").prop('disabled', false);
-			data = $.parseJSON(data);
+		$.ajax({
+			url : "/api",
+			type: "POST",
+			data : $(this).serialize(),
+			success: function(data, textStatus, jqXHR)
+			{
+				console.log(data);
+				$("#signin_button").html("Sign in");
+				$("#signin_button").prop('disabled', false);
+				data = $.parseJSON(data);
 
-			if(data['errors'])
-				alert(data['errors'][0]['message']);
-			else
-				displayDevices(data);
+				if(data['errors'])
+					alert(data['errors'][0]['message']);
+				else
+					displayDevices(data);
+			},
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+				alert("Other Error")
+			}
 		});
+
 	});
 });
 
