@@ -73,5 +73,5 @@ function getDevies($accessToken, $accountID)
     list($header, $body) = explode("\r\n\r\n", $response, 2);
     curl_close ($ch);
 
-    print_r($body);
+    print_r($response);
 }
