@@ -5,7 +5,7 @@ $(document).ready(function(){
 		$("#signin_button").prop('disabled', true);
 
 		$.ajax({
-			url : "/api",
+			url : "https://smartstartshortcut.herokuapp.com/api/",
 			type: "POST",
 			data : $(this).serialize(),
 			success: function(data, textStatus, jqXHR)
